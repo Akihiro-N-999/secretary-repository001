@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI秘書</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>ウォッチリスト</h2>
+      <form id="watch-form" class="watch-form">
+        <input id="watch-symbol" placeholder="例: 7203.T / AAPL" required maxlength="20" autocomplete="off">
+        <input id="watch-note" placeholder="メモ (任意)" maxlength="500" autocomplete="off">
+        <button type="submit">追加</button>
+      </form>
+      <ul id="watchlist" class="watchlist"></ul>
+      <p class="hint">日本株は証券コード + <code>.T</code></p>
+    </aside>
+
+    <main class="chat">
+      <header class="chat-header">
+        <h1>AI秘書 <span>投資情報のとりまとめ</span></h1>
+        <button id="new-chat" class="ghost">新しい会話</button>
+      </header>
+
+      <section id="messages" class="messages">
+        <div class="welcome">
+          <p>こんにちは。投資情報の整理をお手伝いします。</p>
+          <p>ウォッチリストの銘柄の値動きやニュースをまとめたり、気になる銘柄について調べたりできます。</p>
+        </div>
+      </section>
+
+      <div class="quick">
+        <button data-prompt="今日のレポートをお願いします。市場の概況、ウォッチリスト各銘柄の値動き、関連ニュース、注目点をまとめてください。">今日のまとめ</button>
+        <button data-prompt="主要な株価指数と為替の今の状況を教えてください。">市場の概況</button>
+        <button data-prompt="ウォッチリストの銘柄について、直近1週間の重要なニュースを調べてまとめてください。">銘柄ニュース</button>
+      </div>
+
+      <form id="chat-form" class="composer">
+        <textarea id="input" rows="2" placeholder="例: トヨタの直近3か月の値動きと最近のニュースは？" maxlength="8000"></textarea>
+        <button id="send" type="submit">送信</button>
+      </form>
+      <p class="disclaimer">表示される情報は参考情報です。投資判断はご自身の責任で行ってください。</p>
+    </main>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
